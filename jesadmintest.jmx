@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.4" jmeter="3.1">
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.2 r1790748">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="JEsadmintest" enabled="true">
       <stringProp name="TestPlan.comments">This test plan was created by the BlazeMeter JSON to JMX convertor V.1.5.222. Please contact support@blazemeter.com for further support.</stringProp>
@@ -11,37 +11,38 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager">
+      <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
         <collectionProp name="AuthManager.auth_list"/>
       </AuthManager>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp>
       </CookieManager>
       <hashTree/>
-      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager">
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
         <boolProp name="clearEachIteration">true</boolProp>
         <boolProp name="useExpires">false</boolProp>
       </CacheManager>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1363247040000</longProp>
         <longProp name="ThreadGroup.end_time">1363247040000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <longProp name="ThreadGroup.duration">0</longProp>
-        <longProp name="ThreadGroup.delay">0</longProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/login.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -81,17 +82,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/login.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -126,38 +135,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>0.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">0.0</stringProp>
             <stringProp name="ConstantTimer.delay">0.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -184,25 +192,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[2]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>82.80000000000001</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">82.80000000000001</stringProp>
             <stringProp name="ConstantTimer.delay">165.60000000000002</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -308,17 +307,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -353,38 +360,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[3]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>5094.8</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">5094.8</stringProp>
             <stringProp name="ConstantTimer.delay">10189.6</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/NGBOPushMonitor.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/NGBOPushMonitor.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -411,25 +417,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[4]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>50.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">50.0</stringProp>
             <stringProp name="ConstantTimer.delay">100.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/NGBOPushMonitor.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -493,17 +490,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/NGBOPushMonitor.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -538,38 +543,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[5]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>3130.4</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">3130.4</stringProp>
             <stringProp name="ConstantTimer.delay">6260.8</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -596,25 +600,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[6]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>5553.6</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">5553.6</stringProp>
             <stringProp name="ConstantTimer.delay">11107.2</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -720,17 +715,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -765,38 +768,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[7]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>3591.2000000000003</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">3591.2000000000003</stringProp>
             <stringProp name="ConstantTimer.delay">7182.400000000001</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -823,106 +825,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[8]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>94.4</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">94.4</stringProp>
             <stringProp name="ConstantTimer.delay">188.8</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://eu-west-2.console.aws.amazon.com/ec2/ecb?call=getTagsAutoUpdate?&amp;mbtc=1733773107" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">{&quot;forceRefresh&quot;:true, &quot;autoUpdate&quot;:true, &quot;region&quot;:&quot;eu-west-2&quot;}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.domain">eu-west-2.console.aws.amazon.com</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
-          <stringProp name="HTTPSampler.path">ec2/ecb?call=getTagsAutoUpdate?&amp;mbtc=1733773107</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="Content-Encoding" elementType="Header">
-                <stringProp name="Header.name">Content-Encoding</stringProp>
-                <stringProp name="Header.value">amz-1.0</stringProp>
-              </elementProp>
-              <elementProp name="Origin" elementType="Header">
-                <stringProp name="Header.name">Origin</stringProp>
-                <stringProp name="Header.value">https://eu-west-2.console.aws.amazon.com</stringProp>
-              </elementProp>
-              <elementProp name="User-Agent" elementType="Header">
-                <stringProp name="Header.name">User-Agent</stringProp>
-                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36</stringProp>
-              </elementProp>
-              <elementProp name="Content-Type" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-              <elementProp name="X-Amzn-Xsrf" elementType="Header">
-                <stringProp name="Header.name">X-Amzn-Xsrf</stringProp>
-                <stringProp name="Header.value">UmpGRU1URkJOVVl5TmpoQk9VWXdPRFl4UlVRd1JqZzBORVZFUkVGQk5UazNORU5HTkRrM1JrUXlORUUyTlRaRk9VWXpSamsxTUVReFF6Y3hORVEwTXd8ODE4MDE0MDE3Mjk2NDYzMDM4NHwxfDIwMTctMDYtMDhUMTI6MzQ6MDcuODc3Wg==</stringProp>
-              </elementProp>
-              <elementProp name="Accept" elementType="Header">
-                <stringProp name="Header.name">Accept</stringProp>
-                <stringProp name="Header.value">application/json, text/javascript, */*</stringProp>
-              </elementProp>
-              <elementProp name="X-Amz-Target" elementType="Header">
-                <stringProp name="Header.name">X-Amz-Target</stringProp>
-                <stringProp name="Header.value">com.amazon.ec2consolebackend.master.EC2ConsoleBackendService.getTags</stringProp>
-              </elementProp>
-              <elementProp name="Referer" elementType="Header">
-                <stringProp name="Header.name">Referer</stringProp>
-                <stringProp name="Header.value">https://eu-west-2.console.aws.amazon.com/ec2/v2/home?region=eu-west-2</stringProp>
-              </elementProp>
-              <elementProp name="Accept-Encoding" elementType="Header">
-                <stringProp name="Header.name">Accept-Encoding</stringProp>
-                <stringProp name="Header.value">gzip, deflate, br</stringProp>
-              </elementProp>
-              <elementProp name="Accept-Language" elementType="Header">
-                <stringProp name="Header.name">Accept-Language</stringProp>
-                <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[9]/elementProp[2]/collectionProp"/>
-          </HeaderManager>
-          <hashTree/>
-          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>395.20000000000005</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
-            <stringProp name="ConstantTimer.delay">790.4000000000001</stringProp>
-          </UniformRandomTimer>
-          <hashTree/>
-        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="Group1" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -974,17 +886,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1019,25 +939,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[10]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>960.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">960.0</stringProp>
             <stringProp name="ConstantTimer.delay">1920.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/UserGroups.aspx?UserId=a.boddy" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="UserId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1047,17 +958,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/UserGroups.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1084,25 +1003,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[11]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>15.200000000000001</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">15.200000000000001</stringProp>
             <stringProp name="ConstantTimer.delay">30.400000000000002</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/UserGroups.aspx?UserId=a.boddy" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1142,17 +1052,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/UserGroups.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1187,38 +1105,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[12]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>7034.400000000001</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">7034.400000000001</stringProp>
             <stringProp name="ConstantTimer.delay">14068.800000000001</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1245,25 +1162,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[13]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>12.4</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">12.4</stringProp>
             <stringProp name="ConstantTimer.delay">24.8</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="Group1" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1315,17 +1223,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1360,25 +1276,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[14]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>4076.8</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">4076.8</stringProp>
             <stringProp name="ConstantTimer.delay">8153.6</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/UserGroups.aspx?UserId=f.xu" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="UserId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1388,17 +1295,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/UserGroups.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1425,25 +1340,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[15]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>16.8</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">16.8</stringProp>
             <stringProp name="ConstantTimer.delay">33.6</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/UserGroups.aspx?UserId=f.xu" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1483,17 +1389,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/UserGroups.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1528,38 +1442,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[16]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>7372.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">7372.0</stringProp>
             <stringProp name="ConstantTimer.delay">14744.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1586,25 +1499,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[17]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>12.8</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">12.8</stringProp>
             <stringProp name="ConstantTimer.delay">25.6</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Users.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1650,17 +1554,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Users.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1695,38 +1607,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[18]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>1280.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">1280.0</stringProp>
             <stringProp name="ConstantTimer.delay">2560.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1753,25 +1664,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[19]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>13.200000000000001</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">13.200000000000001</stringProp>
             <stringProp name="ConstantTimer.delay">26.400000000000002</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1877,17 +1779,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -1922,38 +1832,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[20]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>1730.8000000000002</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">1730.8000000000002</stringProp>
             <stringProp name="ConstantTimer.delay">3461.6000000000004</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -1980,25 +1889,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[21]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>50.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">50.0</stringProp>
             <stringProp name="ConstantTimer.delay">100.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2086,17 +1986,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Cache-Control" elementType="Header">
                 <stringProp name="Header.name">Cache-Control</stringProp>
@@ -2139,25 +2047,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[22]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>3066.8</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">3066.8</stringProp>
             <stringProp name="ConstantTimer.delay">6133.6</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx?m=a" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="m" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2167,17 +2066,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -2204,25 +2111,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[23]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>32.800000000000004</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">32.800000000000004</stringProp>
             <stringProp name="ConstantTimer.delay">65.60000000000001</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx?m=a" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2370,17 +2268,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -2415,25 +2321,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[24]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>845.2</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">845.2</stringProp>
             <stringProp name="ConstantTimer.delay">1690.4</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx?m=l" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="m" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2443,17 +2340,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -2480,25 +2385,16 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[25]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>49.2</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">49.2</stringProp>
             <stringProp name="ConstantTimer.delay">98.4</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx?m=l" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2580,17 +2476,25 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">Jes2WebAdminSite/SchemeDataConfig/FECCTM.aspx</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Origin" elementType="Header">
                 <stringProp name="Header.name">Origin</stringProp>
@@ -2625,38 +2529,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[26]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>2418.0</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">2418.0</stringProp>
             <stringProp name="ConstantTimer.delay">4836.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/admin/Admin.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/admin/Admin.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -2683,38 +2586,37 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[27]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>32.800000000000004</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">32.800000000000004</stringProp>
             <stringProp name="ConstantTimer.delay">65.60000000000001</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://admin.test.je-s.rcuk.ac.uk/eforms/secure/Admin/AdminLogout.aspx" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.domain">admin.test.je-s.rcuk.ac.uk</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">eforms/secure/Admin/AdminLogout.aspx</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">true</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                 <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -2741,105 +2643,91 @@
                 <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
               </elementProp>
             </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[28]/elementProp[2]/collectionProp"/>
           </HeaderManager>
           <hashTree/>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>3030.4</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
+            <stringProp name="RandomTimer.range">3030.4</stringProp>
             <stringProp name="ConstantTimer.delay">6060.8</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://eu-west-2.console.aws.amazon.com/ec2/ecb?call=getTagsAutoUpdate?&amp;mbtc=1733773107" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">{&quot;forceRefresh&quot;:true, &quot;autoUpdate&quot;:true, &quot;region&quot;:&quot;eu-west-2&quot;}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <stringProp name="HTTPSampler.image_parser">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentDwn">true</stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">2</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.domain">eu-west-2.console.aws.amazon.com</stringProp>
-          <intProp name="HTTPSampler.port">0</intProp>
-          <stringProp name="HTTPSampler.path">ec2/ecb?call=getTagsAutoUpdate?&amp;mbtc=1733773107</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPSampler.header_manager" elementType="HeaderManager" guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="Content-Encoding" elementType="Header">
-                <stringProp name="Header.name">Content-Encoding</stringProp>
-                <stringProp name="Header.value">amz-1.0</stringProp>
-              </elementProp>
-              <elementProp name="Origin" elementType="Header">
-                <stringProp name="Header.name">Origin</stringProp>
-                <stringProp name="Header.value">https://eu-west-2.console.aws.amazon.com</stringProp>
-              </elementProp>
-              <elementProp name="User-Agent" elementType="Header">
-                <stringProp name="Header.name">User-Agent</stringProp>
-                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36</stringProp>
-              </elementProp>
-              <elementProp name="Content-Type" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-              <elementProp name="X-Amzn-Xsrf" elementType="Header">
-                <stringProp name="Header.name">X-Amzn-Xsrf</stringProp>
-                <stringProp name="Header.value">UmpGRU1URkJOVVl5TmpoQk9VWXdPRFl4UlVRd1JqZzBORVZFUkVGQk5UazNORU5HTkRrM1JrUXlORUUyTlRaRk9VWXpSamsxTUVReFF6Y3hORVEwTXd8ODE4MDE0MDE3Mjk2NDYzMDM4NHwxfDIwMTctMDYtMDhUMTI6MzQ6MDcuODc3Wg==</stringProp>
-              </elementProp>
-              <elementProp name="Accept" elementType="Header">
-                <stringProp name="Header.name">Accept</stringProp>
-                <stringProp name="Header.value">application/json, text/javascript, */*</stringProp>
-              </elementProp>
-              <elementProp name="X-Amz-Target" elementType="Header">
-                <stringProp name="Header.name">X-Amz-Target</stringProp>
-                <stringProp name="Header.value">com.amazon.ec2consolebackend.master.EC2ConsoleBackendService.getTags</stringProp>
-              </elementProp>
-              <elementProp name="Referer" elementType="Header">
-                <stringProp name="Header.name">Referer</stringProp>
-                <stringProp name="Header.value">https://eu-west-2.console.aws.amazon.com/ec2/v2/home?region=eu-west-2</stringProp>
-              </elementProp>
-              <elementProp name="Accept-Encoding" elementType="Header">
-                <stringProp name="Header.name">Accept-Encoding</stringProp>
-                <stringProp name="Header.value">gzip, deflate, br</stringProp>
-              </elementProp>
-              <elementProp name="Accept-Language" elementType="Header">
-                <stringProp name="Header.name">Accept-Language</stringProp>
-                <stringProp name="Header.value">en-US,en;q=0.8</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
-            <collectionProp reference="../../../HTTPSamplerProxy[29]/elementProp[2]/collectionProp"/>
-          </HeaderManager>
-          <hashTree/>
-          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
-            <doubleProp>
-              <name>RandomTimer.range</name>
-              <value>746.8000000000001</value>
-              <savedValue>0.0</savedValue>
-            </doubleProp>
-            <stringProp name="ConstantTimer.delay">1493.6000000000001</stringProp>
-          </UniformRandomTimer>
-          <hashTree/>
-        </hashTree>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
       </hashTree>
     </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
   </hashTree>
 </jmeterTestPlan>
